@@ -99,7 +99,6 @@ public class motorTest extends LinearOpMode {
             frontRightDrive.setPower(frontRightPower);
             backLeftDrive.setPower(backLeftPower);
             backRightDrive.setPower(backRightPower);
-
             // commands to move robot forward and backward
 
 
@@ -110,20 +109,17 @@ public class motorTest extends LinearOpMode {
                 backLeftDrive.setPower(powerSide);
                 backRightDrive.setPower(-powerSide);
             }
-
             // commands to move robot from side to side
 
 
-            // Tank Mode
             testMotor1Power  = -gamepad2.left_stick_y;
             testMotorDrive.setPower(testMotor1Power);
-
             // used to power motor for shooter
 
 
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "testMotor1 (%.2f)", testMotor1Power, frontLeftPower, frontRightPower);
+            telemetry.addData("Motors", "testMotor1 (%.2f)", testMotor1Power, " frontLeftPower (%.2f)", frontLeftPower, " frontRightPower (%.2f)", frontRightPower, " backLeftPower (%.2f)", backLeftPower, " backRightPower (%.2f)", backRightPower);
             telemetry.update();
         }
     }
