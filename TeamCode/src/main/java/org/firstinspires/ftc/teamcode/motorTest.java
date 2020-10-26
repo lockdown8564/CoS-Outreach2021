@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.Range;
 import static com.qualcomm.robotcore.util.Range.clip;
 
 
-@TeleOp(name="shooterMotorTest", group="Linear Opmode")
+@TeleOp(name="robotTeleOp", group="Linear Opmode")
 //@Disabled
 public class motorTest extends LinearOpMode {
 
@@ -90,7 +90,7 @@ public class motorTest extends LinearOpMode {
 
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "testMotor1 (%.2f)", testMotor1Power, " frontLeftPower (%.2f)", frontLeftPower, " frontRightPower (%.2f)", frontRightPower, " backLeftPower (%.2f)", backLeftPower, " backRightPower (%.2f)", backRightPower);
+            telemetry.addData("Motors", "testMotor1 (%.2f)" + testMotor1Power + " frontLeftPower (%.2f)" + frontLeftPower + " frontRightPower (%.2f)" + frontRightPower + " backLeftPower (%.2f)" + backLeftPower + " backRightPower (%.2f)" + backRightPower);
             telemetry.update();
         }
     }
