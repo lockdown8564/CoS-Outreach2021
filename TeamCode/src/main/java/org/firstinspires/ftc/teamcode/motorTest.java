@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -86,8 +85,6 @@ public class motorTest extends LinearOpMode {
             testMotor1Power  = -gamepad2.left_stick_y;
             testMotorDrive.setPower(testMotor1Power);
             // used to power motor for shooter
-
-
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "testMotor1 (%.2f)" + testMotor1Power + " frontLeftPower (%.2f)" + frontLeftPower + " frontRightPower (%.2f)" + frontRightPower + " backLeftPower (%.2f)" + backLeftPower + " backRightPower (%.2f)" + backRightPower);
