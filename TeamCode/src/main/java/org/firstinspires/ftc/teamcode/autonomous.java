@@ -1,4 +1,4 @@
 package org.firstinspires.ftc.teamcode;
 
-public class AutoOp {
+public class autonomous {
 }

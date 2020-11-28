@@ -86,10 +86,14 @@ public class testing extends LinearOpMode {
 
             testMotor1Power  = -gamepad2.left_stick_y;
             testMotorDrive.setPower(testMotor1Power);
-            // used to power motor for shooter
+            // used to power motor for flywheel
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "testMotor1 (%.2f)" + testMotor1Power + " frontLeftPower (%.2f)" + frontLeftPower + " frontRightPower (%.2f)" + frontRightPower + " backLeftPower (%.2f)" + backLeftPower + " backRightPower (%.2f)" + backRightPower);
+            telemetry.addData("Motors", "testMotor1 (%.2f)" + testMotor1Power);
+            telemetry.addData("Motors", "frontLeftWheel (%.2f)" + frontLeftPower);
+            telemetry.addData("Motors", "frontRightWheel (%.2f)" + frontRightPower);
+            telemetry.addData("Motors", "backLeftWheel (%.2f)" + backLeftPower);
+            telemetry.addData("Motors", "backRightWheel (%.2f)"+ backRightPower);
             telemetry.update();
         }
     }
