@@ -19,7 +19,7 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.vision;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -35,7 +35,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
-
+// Taken from https://www.youtube.com/watch?v=-QFoOCoaW7I
 @TeleOp
 public class EasyOpenCVExample extends LinearOpMode
 {
@@ -98,6 +98,7 @@ public class EasyOpenCVExample extends LinearOpMode
 
         /*
          * The core values which define the location and size of the sample regions
+         * NEEDS TO CHANGE
          */
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
 
