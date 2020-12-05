@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c0d85a7-cecf-4acc-9239-641c2e91cead" name="Default Changelist" comment="">
+    <list default="true" id="bc6b6304-fba3-4935-a757-f1fb74b563fa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle___tensorflow_lite_0_0_0_nightly__aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle___tensorflow_lite_0_0_0_nightly__aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc_app.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/autonomous.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/autonomous.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/WobblePlacementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/WobblePlacementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.common.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.common.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +36,17 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="FtcRobotController" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,43 +58,157 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1i4uZZuZTGjUbqDs7Ne4reMJtqz" />
+  <component name="ProjectId" id="1j1uN2hn2krYDS9Sty41rFiQk96" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="ZY224N536M" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-18T04:08:41.541Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1602983963218" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\16262\Desktop\ftc_app\TeamCode\src\main\java\org\firstinspires\ftc\teamcode" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.firstinspires.ftc.teamcode" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="forwardTest" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeamCode" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="TeamCode" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5c0d85a7-cecf-4acc-9239-641c2e91cead" name="Default Changelist" comment="" />
-      <created>1601179241910</created>
+      <changelist id="bc6b6304-fba3-4935-a757-f1fb74b563fa" name="Default Changelist" comment="" />
+      <created>1602983876135</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1601179241910</updated>
+      <updated>1602983876135</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1384" y="344" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605995079142">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602992474863">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="1384" y="344" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605995079142" />
-    <state x="863" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1607051210774">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1602992474863" />
+    <state x="525" y="26" key="CommitChangelistDialog2" timestamp="1602994363384">
+      <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state x="863" y="381" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607051210774" />
+    <state x="525" y="26" key="CommitChangelistDialog2/0.23.1440.802@0.23.1440.802" timestamp="1602994363384" />
+    <state width="1398" height="158" key="GridCell.Tab.0.bottom" timestamp="1607207721634">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602992976441" />
+    <state width="1043" height="163" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1602994154130" />
+    <state width="1398" height="158" key="GridCell.Tab.0.bottom/0.23.1440.804@0.23.1440.804" timestamp="1607207721634" />
+    <state width="1398" height="158" key="GridCell.Tab.0.center" timestamp="1607207721633">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602992976440" />
+    <state width="1043" height="163" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1602994154128" />
+    <state width="1398" height="158" key="GridCell.Tab.0.center/0.23.1440.804@0.23.1440.804" timestamp="1607207721633" />
+    <state width="1398" height="158" key="GridCell.Tab.0.left" timestamp="1607207721632">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602992976439" />
+    <state width="1043" height="163" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1602994154127" />
+    <state width="1398" height="158" key="GridCell.Tab.0.left/0.23.1440.804@0.23.1440.804" timestamp="1607207721632" />
+    <state width="1398" height="158" key="GridCell.Tab.0.right" timestamp="1607207721634">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602992976441" />
+    <state width="1043" height="163" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1602994154129" />
+    <state width="1398" height="158" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1607207721634" />
+    <state x="229" y="63" key="SettingsEditor" timestamp="1602984244653">
+      <screen x="0" y="23" width="1440" height="802" />
+    </state>
+    <state x="229" y="63" key="SettingsEditor/0.23.1440.802@0.23.1440.802" timestamp="1602984244653" />
+    <state x="775" y="123" width="565" height="604" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1606528207193">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state x="775" y="112" width="565" height="676" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1440.900@0.0.1440.900" timestamp="1602992102382" />
+    <state x="775" y="123" width="565" height="602" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.802@0.23.1440.802" timestamp="1602991889386" />
+    <state x="775" y="123" width="565" height="604" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.804@0.23.1440.804" timestamp="1606528207193" />
+    <state x="399" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1607207705047">
+      <screen x="0" y="23" width="1440" height="804" />
+    </state>
+    <state x="399" y="256" key="com.intellij.ide.util.TipDialog/0.23.1440.802@0.23.1440.802" timestamp="1606040483422" />
+    <state x="399" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.804@0.23.1440.804" timestamp="1607207705047" />
+    <state x="562" y="192" width="670" height="675" key="run.anything.popup" timestamp="1602994148757">
+      <screen x="0" y="23" width="1440" height="802" />
+    </state>
+    <state x="562" y="192" width="670" height="675" key="run.anything.popup/0.23.1440.802@0.23.1440.802" timestamp="1602994148757" />
+    <state x="643" y="149" width="670" height="676" key="search.everywhere.popup" timestamp="1603587722464">
+      <screen x="0" y="23" width="1440" height="802" />
+    </state>
+    <state x="643" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1603587722464" />
   </component>
 </project>
