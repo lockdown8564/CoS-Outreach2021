@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc6b6304-fba3-4935-a757-f1fb74b563fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc_app.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Hardware.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Hardware.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY224N536M" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -61,7 +54,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-18T04:08:41.541Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="memory.settings.postsync.last.time.stamp" value="1602983963218" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -179,21 +172,22 @@
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602992976441" />
     <state width="1043" height="163" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1602994154129" />
     <state width="1398" height="158" key="GridCell.Tab.0.right/0.23.1440.804@0.23.1440.804" timestamp="1607207721634" />
-    <state x="229" y="63" key="SettingsEditor" timestamp="1602984244653">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state x="229" y="63" key="SettingsEditor" timestamp="1607735415606">
+      <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="229" y="63" key="SettingsEditor/0.23.1440.802@0.23.1440.802" timestamp="1602984244653" />
+    <state x="229" y="63" key="SettingsEditor/0.23.1440.804@0.23.1440.804" timestamp="1607735415606" />
     <state x="775" y="123" width="565" height="604" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1606528207193">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="775" y="112" width="565" height="676" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1440.900@0.0.1440.900" timestamp="1602992102382" />
     <state x="775" y="123" width="565" height="602" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.802@0.23.1440.802" timestamp="1602991889386" />
     <state x="775" y="123" width="565" height="604" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.804@0.23.1440.804" timestamp="1606528207193" />
-    <state x="399" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1607215069460">
+    <state x="399" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1607731903394">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="399" y="256" key="com.intellij.ide.util.TipDialog/0.23.1440.802@0.23.1440.802" timestamp="1606040483422" />
-    <state x="399" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.804@0.23.1440.804" timestamp="1607215069460" />
+    <state x="399" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.804@0.23.1440.804" timestamp="1607731903394" />
     <state x="562" y="192" width="670" height="675" key="run.anything.popup" timestamp="1602994148757">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
