@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -86,7 +86,3 @@ public class WobblePlacementTest extends LinearOpMode {
         }
     }
 }
-
-
-
-
