@@ -80,6 +80,7 @@ public class GlobalCoordinatePositionUpdateSample extends LinearOpMode {
         double distance = Math.hypot(distanceToXTarget, distanceToYTarget);
 
         while(opModeIsActive() && distance > allowableDistanceError) {
+            distance = Math.hypot(distanceToXTarget, distanceToYTarget);
             distanceToXTarget = targetXPosition - globalPositionUpdate.returnXCoordinate();
             distanceToYTarget = targetYPosition - globalPositionUpdate.returnYCoordinate();
 
