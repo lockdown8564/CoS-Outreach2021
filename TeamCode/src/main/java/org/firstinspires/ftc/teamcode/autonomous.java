@@ -7,7 +7,8 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
-
+import org.firstinspires.ftc.teamcode.odo.GlobalCoordinatePositionUpdateSample;
+// ^ nvm it's time to redo the whole odo thing to a diff algorithm (roadrunner) bc everyone uses roadrunner lol
 
 @Autonomous(name = "autonomous", group = "Auto")
 public class autonomous extends LinearOpMode {
@@ -157,6 +158,4 @@ public class autonomous extends LinearOpMode {
         //place wobble code here
 
     }
-}
-    // I love Source Tree!
 }
