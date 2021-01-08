@@ -12,9 +12,13 @@ import org.firstinspires.ftc.teamcode.odo.GlobalCoordinatePositionUpdateSample;
 
 @Autonomous(name = "autonomous", group = "Auto")
 public class autonomous extends LinearOpMode {
+
+    Hardware robot = new Hardware();
+
     OpenCvCamera phoneCam;
     @Override
     public void runOpMode() throws InterruptedException {
+        robot.initialize(hardwareMap);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         OpenCVGoalDetector detector = new OpenCVGoalDetector(telemetry);

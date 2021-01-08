@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class Hardware {
     public DcMotor testMotorDrive;
@@ -10,21 +14,34 @@ public class Hardware {
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
+    public Servo claw;
+
+    public BNO055IMU imu;
+    public Orientation angles;
+
+    public static final double servoClawGrab = 1;
+    public static final double servoClawRelease = 0.5;
 
     HardwareMap hardwareMap;
     public ElapsedTime runtime = new ElapsedTime();
 
-    public Hardware(HardwareMap hwMap){
-        initialize(hwMap);
-
+    public Hardware(){
+        initialize(hardwareMap);
     }
-    private void initialize(HardwareMap hwMap){
-        hardwareMap = hwMap;
+    public void initialize(HardwareMap hardwareMap){
+        hardwareMap = hardwareMap;
         testMotorDrive = hardwareMap.get(DcMotor.class, "testMotor1");
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftWheel");
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightWheel");
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftWheel");
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightWheel");
+        claw = hardwareMap.servo.get("insert servo name here");
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.calibrationDataFile = "BNO55IMUCalibration.json";
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
 
         testMotorDrive.setDirection(DcMotor.Direction.FORWARD);
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -46,11 +63,6 @@ public class Hardware {
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
 
 
     }
