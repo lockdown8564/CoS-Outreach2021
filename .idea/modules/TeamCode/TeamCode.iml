@@ -30,15 +30,15 @@
     <output-test url="file://$MODULE_DIR$/../../../TeamCode/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../TeamCode">
-      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/aidl_source_output_dir/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/renderscript_source_output_dir/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/res/rs/debug" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/renderscript_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/aidl_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/ap_generated_sources/debugAndroidTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/aidl_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/source/buildConfig/androidTest/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/renderscript_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/res/rs/androidTest/debug" type="java-test-resource" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/ap_generated_sources/debugUnitTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/src/debug/res" type="java-resource" />
@@ -85,11 +85,11 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/src/test/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../TeamCode/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotCore:6.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Hardware:6.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:FtcCommon:6.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotCore:6.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Hardware:6.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:FtcCommon:6.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.openftc:easyopencv:1.4.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.openftc:opencv-repackaged:4.1.0-C@aar" level="project" />
     <orderEntry type="library" name="Gradle: :tfod-release:@aar" level="project" />
