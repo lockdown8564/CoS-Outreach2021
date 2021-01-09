@@ -35,7 +35,7 @@ public class Hardware {
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightWheel");
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftWheel");
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightWheel");
-        claw = hardwareMap.servo.get("insert servo name here");
+        claw = hardwareMap.get(Servo.class, "insert servo name here");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
