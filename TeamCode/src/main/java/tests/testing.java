@@ -20,7 +20,6 @@ public class testing extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     // private DcMotor leftDrive = null;
     // private DcMotor rightDrive = null;
-    DcMotor testMotorDrive;
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
     DcMotor backLeftDrive;
@@ -31,13 +30,11 @@ public class testing extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        testMotorDrive = hardwareMap.get(DcMotor.class, "testMotor1");
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftWheel");
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightWheel");
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftWheel");
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightWheel");
 
-        testMotorDrive.setDirection(DcMotor.Direction.FORWARD);
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -56,7 +53,6 @@ public class testing extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Setup a variable for each drive wheel to save power level for telemetry
-            double testMotor1Power;
             double frontLeftPower;
             double frontRightPower;
             double backLeftPower;
@@ -89,12 +85,8 @@ public class testing extends LinearOpMode {
             // commands to move robot from side to side
 
 
-            testMotor1Power  = -gamepad2.left_stick_y;
-            testMotorDrive.setPower(testMotor1Power);
-            // used to power motor for flywheel
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "testMotor1 (%.2f)" + testMotor1Power);
             telemetry.addData("Motors", "frontLeftWheel (%.2f)" + frontLeftPower);
             telemetry.addData("Motors", "frontRightWheel (%.2f)" + frontRightPower);
             telemetry.addData("Motors", "backLeftWheel (%.2f)" + backLeftPower);
