@@ -56,6 +56,8 @@ public class teleOp extends LinearOpMode {
                 robot.frontRightDrive.setPower(0);
                 robot.backRightDrive.setPower(0);
             }
+
+            // add more here
         }
     }
 }
