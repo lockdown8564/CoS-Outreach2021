@@ -13,9 +13,13 @@ public class Hardware {
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
+    public DcMotor intake;
+    public Servo testServo;
 
     public BNO055IMU imu;
     public Orientation angles;
+    public static final double SERVO_GRAB = 1;
+    public static final double SERVO_RELEASE = 0.4;
 
 
     HardwareMap hardwareMap;
@@ -27,6 +31,8 @@ public class Hardware {
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightWheel");
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftWheel");
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightWheel");
+        testServo = hardwareMap.get(Servo.class, "testServo");
+        intake = hardwareMap.get(DcMotor.class, "intake");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -34,10 +40,11 @@ public class Hardware {
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        intake.setDirection(DcMotor.Direction.FORWARD);
 
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

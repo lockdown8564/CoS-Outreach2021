@@ -38,8 +38,6 @@ public class autonomous extends LinearOpMode {
 
         phoneCam.stopStreaming();
     }
-
-
     /**
      * our alliance for each match
      */
@@ -79,11 +77,11 @@ public class autonomous extends LinearOpMode {
         ONE,
         NONE
     }
-    // need team string
-    // need startposition
-    // need to place
-    // need
-    switch(team)
+// need team string
+// need startposition
+// need to place
+// need
+switch(team)
 
     {
         case RED: {

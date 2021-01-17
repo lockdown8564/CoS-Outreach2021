@@ -22,7 +22,7 @@ public class teleOp extends LinearOpMode {
 
             double leftStrafe = -gamepad1.left_trigger;
             double rightStrafe = -gamepad1.right_trigger;
-            double backAndForth = -gamepad1.left_stick_y;
+            double backAndForth = gamepad1.left_stick_y;
             double sideMovement = -gamepad1.left_stick_x;
 
             if (gamepad1.left_stick_y != 0) {
@@ -45,11 +45,11 @@ public class teleOp extends LinearOpMode {
                 robot.backLeftDrive.setPower(-rightStrafe);
                 robot.frontRightDrive.setPower(-rightStrafe);
                 robot.backRightDrive.setPower(rightStrafe);
-            } else if (gamepad1.right_stick_y != 0) {
-                robot.frontLeftDrive.setPower(gamepad1.right_stick_y);
-                robot.backLeftDrive.setPower(gamepad1.right_stick_y);
-                robot.frontRightDrive.setPower(-gamepad1.right_stick_y);
-                robot.backRightDrive.setPower(-gamepad1.right_stick_y);
+            } else if (gamepad1.right_stick_x != 0) {
+                robot.frontLeftDrive.setPower(gamepad1.right_stick_x);
+                robot.backLeftDrive.setPower(gamepad1.right_stick_x);
+                robot.frontRightDrive.setPower(-gamepad1.right_stick_x);
+                robot.backRightDrive.setPower(-gamepad1.right_stick_x);
             } else {
                 robot.frontLeftDrive.setPower(0);
                 robot.backLeftDrive.setPower(0);
@@ -57,7 +57,17 @@ public class teleOp extends LinearOpMode {
                 robot.backRightDrive.setPower(0);
             }
 
-            // add more here
+            if (gamepad2.right_stick_y != 0) {
+                robot.testServo.setPosition(gamepad2.right_stick_y);
+            } else {
+                robot.testServo.setPosition(0);
+            }
+
+            if (gamepad2.left_stick_y != 0) {
+                robot.intake.setPower(gamepad2.left_stick_y);
+            } else {
+                robot.intake.setPower(0);
+            }
         }
     }
 }
