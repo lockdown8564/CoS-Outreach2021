@@ -162,4 +162,30 @@ public class autonomous extends LinearOpMode {
         //place wobble code here
 
     }
+            switch(pipeline.getHeight()) {
+        case ZERO:
+            moveToA();
+            break;
+        case ONE:
+            moveToB();
+            break;
+        case FOUR:
+            moveToC();
+            break;
+        default:
+
+    }
+}
+
+    public void moveToA() {
+
+    }
+
+    public void moveToB() {
+
+    }
+
+    public void moveToC() {
+
+    }
 }
