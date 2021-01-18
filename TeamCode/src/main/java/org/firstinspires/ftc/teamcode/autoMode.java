@@ -37,69 +37,59 @@ public class autoMode extends LinearOpMode {
                 //...
         }
         //Drop off Wobble to square
-
-
-        //Shoot Rings
-
-        //Park on Line
-
-        phoneCam.stopStreaming();
-    }
-    /**
-     * our alliance for each match
-     */
-    private enum Alliance {
-        /**
-         * blue alliance side
-         */
-        BLUE,
-
-        /**
-         * red alliance side
-         */
-        RED
-    }
-
-    private enum StartingPos {
-        /**
-         * foundation side one tile away from the side wall
-         */
-        REDLEFT,
-
-        /**
-         * stone side along the side wall
-         */
-        REDRIGHT,
-
-        /**
-         * stone side one tile away from the side wall
-         */
-        BLUELEFT,
-
-        BLUERIGHT
-    }
-
-    private enum RingPosition {
-        FOUR,
-        ONE,
-        NONE
-    }
 // need team string
 // need startposition
 // need to place
 // need
-switch(team)
+        /*
+        switch(team)
 
-    {
+        {
+
+         */
         case RED: {
             switch (startposition) {
                 case REDLEFT: {
+                    switch (position) {
+                        case FOUR: {
+                            //turn right
+                            robot.frontLeftDrive.setPower(1);
+                            robot. frontRightDrive.setPower(-1);
+                            robot.backLeftDrive.setPower(1);
+                            robot.backRightDrive.setPower(-1);
+                            toC();
+
+                            break;
+                        }
+                        case ONE: {
+                            toB();
+                            break;
+                        }
+                        case NONE: {|
+                            //turn right
+                            robot.frontLeftDrive.setPower(1);
+                            robot.frontRightDrive.setPower(-1);
+                            robot.backLeftDrive.setPower(1);
+                            robot.backRightDrive.setPower(-1);
+                            toA();
+
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case REDRIGHT: {
                     switch (position) {
                         case FOUR: {
                             toC();
                             break;
                         }
                         case ONE: {
+                            //turn left
+                            robot.frontLeftDrive.setPower(-1);
+                            robot.frontRightDrive.setPower(1);
+                            robot. backLeftDrive.setPower(-1);
+                            robot.backRightDrive.setPower(1);
                             toB();
                             break;
                         }
@@ -110,87 +100,74 @@ switch(team)
                     }
                     break;
                 }
-                case REDRIGHT: {
+            }
+
+
+            break;
+        }
+
+
+            /*
+            case BLUE: {
+                switch (startposition) {
+                    case BLUELEFT: {
+                        break;
+                    }
+                    case BLUERIGHT: {
+                        break;
+                    }
 
                 }
 
-                break;
             }
 
         }
-        case BLUE: {
-            switch (startposition) {
-                case BLUELEFT: {
-                    break;
-                }
-                case BLUERIGHT: {
-                    break;
-                }
 
-            }
+             */
+
+        //Shoot Rings
+
+        //Park on Line
+
+        phoneCam.stopStreaming();
+
+
+        //functions to get the robot to the spot
+        public static void toA() {
+            //align code here
+            robot.frontLeftDrive.setPower(1);
+            robot.frontRightDrive.setPower(-1);
+            robot.backLeftDrive.setPower(1);
+            robot.backRightDrive.setPower(-1);
+            robot.sleep(2000);
+            //place wobble code here
+        }
+
+        public static void toB() {
+            //align
+            robot. frontLeftDrive.setPower(1);
+            robot.frontRightDrive.setPower(-1);
+            robot.backLeftDrive.setPower(1);
+            robot.backRightDrive.setPower-(1);
+            robot.sleep(3000);
+            //place wobble code here
+
 
         }
 
+        public static void toC() {
+            //align
+            robot.frontLeftDrive.setPower(1);
+            robot.frontRightDrive.setPower(-1);
+            robot.backLeftDrive.setPower(1);
+            robot.backRightDrive.setPower(-1);
+            robot.sleep(4000);
+            //place wobble code here
+
+        }
     }
 
 
-    //functions to get the robot to the spot
-    public static void toA() {
-        //align code here
-        frontLeftDrive.setPower(1);
-        frontRightDrive.setPower(1);
-        backLeftDrive.setPower(1);
-        backRightDrive.setPower(1);
-        sleep();
-        //place wobble code here
-    }
-
-    public static void toB() {
-        //align
-        frontLeftDrive.setPower(1);
-        frontRightDrive.setPower(1);
-        backLeftDrive.setPower(1);
-        backRightDrive.setPower(1);
-        sleep();
-        //place wobble code here
 
 
-    }
 
-    public static void toC() {
-        //align
-        frontLeftDrive.setPower(1);
-        frontRightDrive.setPower(1);
-        backLeftDrive.setPower(1);
-        backRightDrive.setPower(1);
-        sleep();
-        //place wobble code here
-
-    }
-            switch(pipeline.getHeight()) {
-        case ZERO:
-            moveToA();
-            break;
-        case ONE:
-            moveToB();
-            break;
-        case FOUR:
-            moveToC();
-            break;
-        default:
-
-    }
-}
-
-    public void moveToA() {
-
-    }
-
-    public void moveToB() {
-
-    }
-
-    public void moveToC() {
-
-    }
-}

@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/TeamCode.iml" group="ftc_app/TeamCode" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/code-FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/code-FtcRobotController.iml" group="FtcRobotController" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ftc_app.iml" filepath="$PROJECT_DIR$/.idea/modules/ftc_app.iml" group="ftc_app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_app-TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_app-TeamCode.iml" group="ftc_app/TeamCode" />
     </modules>
   </component>
 </project>
