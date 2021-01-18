@@ -52,7 +52,7 @@ public class autoMode extends LinearOpMode {
                 case REDLEFT: {
                     switch (position) {
                         case FOUR: {
-                            //turn right
+                            // code to turn right
                             robot.frontLeftDrive.setPower(1);
                             robot. frontRightDrive.setPower(-1);
                             robot.backLeftDrive.setPower(1);
@@ -66,7 +66,7 @@ public class autoMode extends LinearOpMode {
                             break;
                         }
                         case NONE: {|
-                            //turn right
+                            //code to turn right
                             robot.frontLeftDrive.setPower(1);
                             robot.frontRightDrive.setPower(-1);
                             robot.backLeftDrive.setPower(1);
@@ -85,7 +85,7 @@ public class autoMode extends LinearOpMode {
                             break;
                         }
                         case ONE: {
-                            //turn left
+                            //code to turn right
                             robot.frontLeftDrive.setPower(-1);
                             robot.frontRightDrive.setPower(1);
                             robot. backLeftDrive.setPower(-1);
@@ -134,13 +134,17 @@ public class autoMode extends LinearOpMode {
 
         //functions to get the robot to the spot
         public static void toA() {
-            //align code here
+            //code to move forward until reaching the poin
             robot.frontLeftDrive.setPower(1);
             robot.frontRightDrive.setPower(-1);
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower(-1);
             robot.sleep(2000);
-            //place wobble code here
+            robot.frontLeftDrive.setPower(0);
+            robot.frontRightDrive.setPower(0);
+            robot.backLeftDrive.setPower(0);
+            robot.backRightDrive.setPower(0);
+            //stop at the point and place wobble
         }
 
         public static void toB() {
@@ -150,7 +154,11 @@ public class autoMode extends LinearOpMode {
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower-(1);
             robot.sleep(3000);
-            //place wobble code here
+            //stop at the point and place wobble
+            robot.frontLeftDrive.setPower(0);
+            robot.frontRightDrive.setPower(0);
+            robot.backLeftDrive.setPower(0);
+            robot.backRightDrive.setPower(0);
 
 
         }
@@ -162,7 +170,12 @@ public class autoMode extends LinearOpMode {
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower(-1);
             robot.sleep(4000);
-            //place wobble code here
+            //stop at the point and place wobble
+            robot.frontLeftDrive.setPower(0);
+            robot.frontRightDrive.setPower(0);
+            robot.backLeftDrive.setPower(0);
+            robot.backRightDrive.setPower(0);
+
 
         }
     }
