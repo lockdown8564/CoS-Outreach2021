@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.odo.GlobalCoordinatePositionUpdateSample;
 // ^ nvm it's time to redo the whole odo thing to a diff algorithm (roadrunner) bc everyone uses roadrunner lol
 
 @Autonomous(name = "autonomous", group = "Auto")
-public class autonomous extends LinearOpMode {
+public class autoMode extends LinearOpMode {
 
     Hardware robot = new Hardware();
 
@@ -28,6 +28,7 @@ public class autonomous extends LinearOpMode {
         );
 
         waitForStart();
+        //pick up Wobble
         switch (detector.getGoalPresence()) {
             case PRESENT:
                 //...
@@ -35,6 +36,12 @@ public class autonomous extends LinearOpMode {
             case ABSENT:
                 //...
         }
+        //Drop off Wobble to square
+
+
+        //Shoot Rings
+
+        //Park on Line
 
         phoneCam.stopStreaming();
     }
