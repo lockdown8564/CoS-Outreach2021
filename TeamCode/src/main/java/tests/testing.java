@@ -35,8 +35,8 @@ public class testing extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftWheel");
         backRightDrive = hardwareMap.get(DcMotor.class, "backRightWheel");
 
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
 

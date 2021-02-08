@@ -20,8 +20,8 @@ public class OpenCVGoalDetector extends OpenCvPipeline {
     private GoalPresence goalPresence;
 
     static final Rect MAIN_ROI = new Rect(
-        new Point(70, 75),
-        new Point(170,250));
+            new Point(70, 75),
+            new Point(170,250));
     static double PERCENT_COLOR_THRESHOLD = 0.2;
     public OpenCVGoalDetector(Telemetry t) { telemetry = t; }
 

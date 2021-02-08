@@ -18,7 +18,7 @@ public class autoMode extends LinearOpMode {
     OpenCvCamera phoneCam;
     @Override
     public void runOpMode() throws InterruptedException {
-        robot.initialize(hardwareMap);
+        robot.init(hardwareMap);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         OpenCVGoalDetector detector = new OpenCVGoalDetector(telemetry);
@@ -41,12 +41,12 @@ public class autoMode extends LinearOpMode {
 // need startposition
 // need to place
 // need
-        /*
-        switch(team)
+       /*
+       switch(team)
 
-        {
+       {
 
-         */
+        */
         case RED: {
             switch (startposition) {
                 case REDLEFT: {
@@ -107,23 +107,23 @@ public class autoMode extends LinearOpMode {
         }
 
 
-            /*
-            case BLUE: {
-                switch (startposition) {
-                    case BLUELEFT: {
-                        break;
-                    }
-                    case BLUERIGHT: {
-                        break;
-                    }
+           /*
+           case BLUE: {
+               switch (startposition) {
+                   case BLUELEFT: {
+                       break;
+                   }
+                   case BLUERIGHT: {
+                       break;
+                   }
 
-                }
+               }
 
-            }
+           }
 
-        }
+       }
 
-             */
+            */
 
         //Shoot Rings
 
@@ -152,7 +152,7 @@ public class autoMode extends LinearOpMode {
             robot. frontLeftDrive.setPower(1);
             robot.frontRightDrive.setPower(-1);
             robot.backLeftDrive.setPower(1);
-            robot.backRightDrive.setPower-(1);
+            robot.backRightDrive.setPower(-1);
             robot.sleep(3000);
             //stop at the point and place wobble
             robot.frontLeftDrive.setPower(0);
@@ -179,8 +179,3 @@ public class autoMode extends LinearOpMode {
 
         }
     }
-
-
-
-
-
