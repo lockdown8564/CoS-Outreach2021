@@ -4,7 +4,13 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+
+
 import java.util.Arrays;
 
 public class Hardware {
@@ -17,7 +23,9 @@ public class Hardware {
     public DcMotor intake;
     public BNO055IMU imu;
     public Orientation angles;
-    public Servo testServo;
+    public Servo wobbleServo;
+    public DcMotor flywheel;
+    public Servo shooterServo;
     private double flPower, frPower, blPower, brPower = 0;
 
 
@@ -40,6 +48,7 @@ public class Hardware {
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+
         frontLeftDrive = hwMap.get(DcMotor.class, "frontLeftWheel");
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -60,19 +69,26 @@ public class Hardware {
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        backRightDrive =hwMap.get(DcMotor.class, "backRightWheel");
+        backRightDrive = hwMap.get(DcMotor.class, "backRightWheel");
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        intake =hwMap.get(DcMotor.class, "intake");
+        intake = hwMap.get(DcMotor.class, "intake");
         intake.setDirection(DcMotor.Direction.FORWARD);
         intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        testServo = hwMap.get(Servo.class, "testServo");
+        flywheel = hwMap.get(DcMotor.class, "flywheel");
+        flywheel.setDirection(DcMotor.Direction.FORWARD);
+        flywheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        flywheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        wobbleServo = hwMap.get(Servo.class, "wobbleServo");
+        shooterServo = hwMap.get(Servo.class, "shooterServo");
 
     }
 

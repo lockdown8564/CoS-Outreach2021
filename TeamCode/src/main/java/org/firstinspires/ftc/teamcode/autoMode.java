@@ -3,37 +3,41 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
-import org.firstinspires.ftc.teamcode.odo.GlobalCoordinatePositionUpdateSample;
-// ^ nvm it's time to redo the whole odo thing to a diff algorithm (roadrunner) bc everyone uses roadrunner lol
 
 @Autonomous(name = "autonomous", group = "Auto")
 public class autoMode extends LinearOpMode {
 
     Hardware robot = new Hardware();
 
-    OpenCvCamera phoneCam;
+    OpenCvCamera webCam;
+
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-        OpenCVGoalDetector detector = new OpenCVGoalDetector(telemetry);
-        phoneCam.setPipeline(detector);
-        phoneCam.openCameraDeviceAsync(
-                () -> phoneCam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT)
+        webCam = OpenCvCameraFactory.getInstance().createWebcam(robot.hwMap.get(WebcamName.class, "webcam1"), cameraMonitorViewId);
+        ringStackSizeDetector stackSizeDetector = new ringStackSizeDetector(telemetry);
+        webCam.setPipeline(stackSizeDetector);
+        webCam.openCameraDeviceAsync(
+                () -> webCam.startStreaming(240, 320, OpenCvCameraRotation.UPRIGHT)
         );
 
         waitForStart();
         //pick up Wobble
-        switch (detector.getGoalPresence()) {
-            case PRESENT:
+        switch (stackSizeDetector.stackSize()) {
+            case NONE:
                 //...
                 break;
-            case ABSENT:
+            case ONE:
+                //...
+                break;
+
+            case FOUR:
                 //...
         }
         //Drop off Wobble to square
@@ -54,7 +58,7 @@ public class autoMode extends LinearOpMode {
                         case FOUR: {
                             // code to turn right
                             robot.frontLeftDrive.setPower(1);
-                            robot. frontRightDrive.setPower(-1);
+                            robot.frontRightDrive.setPower(-1);
                             robot.backLeftDrive.setPower(1);
                             robot.backRightDrive.setPower(-1);
                             toC();
@@ -88,7 +92,7 @@ public class autoMode extends LinearOpMode {
                             //code to turn right
                             robot.frontLeftDrive.setPower(-1);
                             robot.frontRightDrive.setPower(1);
-                            robot. backLeftDrive.setPower(-1);
+                            robot.backLeftDrive.setPower(-1);
                             robot.backRightDrive.setPower(1);
                             toB();
                             break;
@@ -129,7 +133,7 @@ public class autoMode extends LinearOpMode {
 
         //Park on Line
 
-        phoneCam.stopStreaming();
+        webCam.stopStreaming();
 
 
         //functions to get the robot to the spot
@@ -139,7 +143,7 @@ public class autoMode extends LinearOpMode {
             robot.frontRightDrive.setPower(-1);
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower(-1);
-            robot.sleep(2000);
+            sleep(2000);
             robot.frontLeftDrive.setPower(0);
             robot.frontRightDrive.setPower(0);
             robot.backLeftDrive.setPower(0);
@@ -149,11 +153,11 @@ public class autoMode extends LinearOpMode {
 
         public static void toB() {
             //align
-            robot. frontLeftDrive.setPower(1);
+            robot.frontLeftDrive.setPower(1);
             robot.frontRightDrive.setPower(-1);
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower(-1);
-            robot.sleep(3000);
+            sleep(3000);
             //stop at the point and place wobble
             robot.frontLeftDrive.setPower(0);
             robot.frontRightDrive.setPower(0);
@@ -169,7 +173,7 @@ public class autoMode extends LinearOpMode {
             robot.frontRightDrive.setPower(-1);
             robot.backLeftDrive.setPower(1);
             robot.backRightDrive.setPower(-1);
-            robot.sleep(4000);
+            sleep(4000);
             //stop at the point and place wobble
             robot.frontLeftDrive.setPower(0);
             robot.frontRightDrive.setPower(0);
@@ -179,3 +183,4 @@ public class autoMode extends LinearOpMode {
 
         }
     }
+}
