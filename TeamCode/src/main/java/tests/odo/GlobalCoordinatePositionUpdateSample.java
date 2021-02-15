@@ -1,10 +1,8 @@
-package org.firstinspires.ftc.teamcode.odo;
+package tests.odo;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import org.firstinspires.ftc.teamcode.odo.OdometryGlobalCoordinatePosition;
 
 /**
  * Created by Sarthak on 6/1/2019.

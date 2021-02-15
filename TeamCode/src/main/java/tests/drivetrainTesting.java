@@ -10,11 +10,11 @@ import com.qualcomm.robotcore.util.Range;
 import static com.qualcomm.robotcore.util.Range.clip;
 
 
-// before anything goes wrong lol (this class will prob be removed later -> just for testing out movements and stuff)
+// before anything goes wrong lol (this class will prob be removed later -> just for drivetrainTesting out movements and stuff)
 
 @TeleOp(name="robotTeleOp", group="Linear Opmode")
 //@Disabled
-public class testing extends LinearOpMode {
+public class drivetrainTesting extends LinearOpMode {
 
 
     private ElapsedTime runtime = new ElapsedTime();
