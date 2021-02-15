@@ -71,7 +71,7 @@ public class ringStackSizeDetector extends OpenCvPipeline {
         return mat;
     }
 
-    public StackSize stackSize() {
+    public StackSize getStackSize() {
         return stackSize;
     }
 }

@@ -97,9 +97,9 @@ public class teleOp extends LinearOpMode {
             }
 
             if (gamepad2.right_stick_y != 0) {
-                robot.testServo.setPosition(0);
+                robot.wobbleServo.setPosition(0);
             } else {
-                robot.testServo.setPosition(0.5);
+                robot.wobbleServo.setPosition(0.5);
             }
 
         }
