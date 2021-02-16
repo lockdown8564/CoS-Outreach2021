@@ -41,10 +41,10 @@ public class teleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            telemetry.addData("fl wheel ticks: ", robot.frontLeftDrive.getCurrentPosition());
-            telemetry.addData("fr wheel ticks: ", robot.frontRightDrive.getCurrentPosition());
-            telemetry.addData("bl wheel ticks: ", robot.backLeftDrive.getCurrentPosition());
-            telemetry.addData("br wheel ticks: ", robot.backRightDrive.getCurrentPosition());
+            telemetry.addData("fl wheel pos: ", robot.frontLeftDrive.getCurrentPosition());
+            telemetry.addData("fr wheel pos: ", robot.frontRightDrive.getCurrentPosition());
+            telemetry.addData("bl wheel pos: ", robot.backLeftDrive.getCurrentPosition());
+            telemetry.addData("br wheel pos: ", robot.backRightDrive.getCurrentPosition());
             telemetry.update();
 
             robot.mecanumDrive(vertical, strafe, horizontal, driveDirection, maxSpeed);

@@ -34,15 +34,71 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
+
+import ftclib.FtcMenu;
+import ftclib.FtcChoiceMenu;
+import ftclib.FtcValueMenu;
+import hallib.HalDashboard;
+
 @Autonomous(name = "auton", group = "Auto")
-public class autoMode extends LinearOpMode {
+public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
+    private Hardware robot = new Hardware();
+    private static HalDashboard dashboard;
+    Alliance alliance;
+    StartingPos startpos;
+    HighGoalFromPreload highGoalFromPreload;
+    WobbleGoal wobbleGoal;
+    HighGoalAfterWobble highGoalAfterWobble;
+    Park park;
+    int delay;
     OpenCvCamera webCam;
     DeterminationPipeline pipeline;
 
+    private enum Alliance {
+        RED,
+        BLUE
+    }
+
+    private enum StartingPos {
+        WALL,
+        CENTER
+    }
+
+    private enum HighGoalFromPreload {
+        YES,
+        NO
+    }
+
+    private enum WobbleGoal {
+        YES,
+        NO
+    }
+
+    private enum HighGoalAfterWobble {
+        YES,
+        NO
+    }
+
+    private enum Park {
+        YES,
+        NO
+    }
+
     @Override
     public void runOpMode() {
+        robot.init(hardwareMap);
+
+        alliance = Alliance.RED;
+        startpos = StartingPos.WALL;
+        highGoalFromPreload = HighGoalFromPreload.YES;
+        wobbleGoal = WobbleGoal.YES;
+        highGoalAfterWobble = HighGoalAfterWobble.NO;
+        park = Park.YES;
+        delay = 0;
+
+        dashboard = HalDashboard.createInstance(telemetry);
+        doMenus();
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
@@ -59,7 +115,7 @@ public class autoMode extends LinearOpMode {
             @Override
             public void onOpened()
             {
-                webCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                webCam.startStreaming(1920,1080, OpenCvCameraRotation.UPRIGHT);
             }
         });
 
@@ -75,6 +131,69 @@ public class autoMode extends LinearOpMode {
             sleep(50);
         }
     }
+
+
+
+// FTC Menu Implementation
+    @Override
+    public boolean isMenuUpButton() { return gamepad1.dpad_up; }
+
+    @Override
+    public boolean isMenuDownButton() { return gamepad1.dpad_down; }
+
+    @Override
+    public boolean isMenuEnterButton() { return gamepad1.dpad_right; }
+
+    @Override
+    public boolean isMenuBackButton() { return gamepad1.dpad_left; }
+
+    private void doMenus(){
+        FtcChoiceMenu<Alliance> allianceMenu = new FtcChoiceMenu<>("Alliance:", null, this);
+        FtcChoiceMenu<StartingPos> startPosMenu = new FtcChoiceMenu<>("Start Position:", allianceMenu, this);
+        FtcChoiceMenu<HighGoalFromPreload> highGoalFromPreloadMenu = new FtcChoiceMenu<>("High Goal At Start:", startPosMenu, this);
+        FtcChoiceMenu<WobbleGoal> wobbleGoalMenu = new FtcChoiceMenu<>("Wobble Goal:", highGoalFromPreloadMenu, this);
+        FtcChoiceMenu<HighGoalAfterWobble> highGoalAfterWobbleMenu = new FtcChoiceMenu<>("Score Rings After Wobble:", wobbleGoalMenu, this);
+        FtcChoiceMenu<Park> parkMenu = new FtcChoiceMenu<>("Park:", highGoalAfterWobbleMenu, this);
+        FtcValueMenu delayMenu = new FtcValueMenu("Delay:", parkMenu, this, 0, 25000, 500, 0, "%.0f msec");
+
+        allianceMenu.addChoice("Red", Alliance.RED, true, startPosMenu);
+        allianceMenu.addChoice("Blue", Alliance.BLUE, false, startPosMenu);
+
+        startPosMenu.addChoice("Wall", StartingPos.WALL, true, highGoalFromPreloadMenu);
+        startPosMenu.addChoice("Center", StartingPos.CENTER, false, highGoalFromPreloadMenu);
+
+        highGoalFromPreloadMenu.addChoice("Yes", HighGoalFromPreload.YES, true, wobbleGoalMenu);
+        highGoalFromPreloadMenu.addChoice("No", HighGoalFromPreload.NO, false, wobbleGoalMenu);
+
+        wobbleGoalMenu.addChoice("Yes", WobbleGoal.YES, true, highGoalAfterWobbleMenu);
+        wobbleGoalMenu.addChoice("No", WobbleGoal.NO, false, highGoalAfterWobbleMenu);
+
+        highGoalAfterWobbleMenu.addChoice("Yes", HighGoalAfterWobble.YES, false, parkMenu);
+        highGoalAfterWobbleMenu.addChoice("No", HighGoalAfterWobble.NO, true, parkMenu);
+
+        parkMenu.addChoice("Yes", Park.YES, true, delayMenu);
+        parkMenu.addChoice("No", Park.NO, false, delayMenu);
+
+        delayMenu.setChildMenu(null);
+
+        FtcMenu.walkMenuTree(allianceMenu, this);
+        alliance = allianceMenu.getCurrentChoiceObject();
+        startpos = startPosMenu.getCurrentChoiceObject();
+        highGoalFromPreload = highGoalFromPreloadMenu.getCurrentChoiceObject();
+        wobbleGoal = wobbleGoalMenu.getCurrentChoiceObject();
+        highGoalAfterWobble = highGoalAfterWobbleMenu.getCurrentChoiceObject();
+        park = parkMenu.getCurrentChoiceObject();
+        delay = (int) delayMenu.getCurrentValue();
+
+        dashboard.displayPrintf(0, "Alliance: %s (%s)", allianceMenu.getCurrentChoiceText(), alliance.toString());
+        dashboard.displayPrintf(1, "Start Position: %s (%s)", startPosMenu.getCurrentChoiceText(), startpos.toString());
+        dashboard.displayPrintf(2, "High Goal From Preload: %s (%s)", highGoalFromPreloadMenu.getCurrentChoiceText(), highGoalFromPreload.toString());
+        dashboard.displayPrintf(3, "Score Wobble Goal: %s (%s)", wobbleGoalMenu.getCurrentChoiceText(), wobbleGoal.toString());
+        dashboard.displayPrintf(4, "High Goal After Wobble: %s (%s)", highGoalAfterWobbleMenu.getCurrentChoiceText(), highGoalAfterWobble.toString());
+        dashboard.displayPrintf(5, "Park: %s (%s)", parkMenu.getCurrentChoiceText(), park.toString());
+        dashboard.displayPrintf(6, "Delay: %d msec", delay);
+    }
+// End of FTC Menu
 
 
 
