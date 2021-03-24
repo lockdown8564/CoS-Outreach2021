@@ -621,10 +621,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
 
 
-/* Ring Stack Size Detector Code
- * This class is heavily inspired by FTC Team Wizards.exe #9794.
- * Link to their OpenCV tutorial: https://www.youtube.com/watch?v=-QFoOCoaW7I&t=294s
- */
+// Ring Stack Size Detector Code
     public static class DeterminationPipeline extends OpenCvPipeline {
         /*
          * An enum to define the skystone position
