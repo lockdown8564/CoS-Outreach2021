@@ -4,6 +4,6 @@ This is the GitHub repository for *FIRST* Tech Challenge Team Lockdown 8564. Thi
 ## Disclaimer
 Because this is the working project, we do not officially support any software in here unless specified. However we still welcome bug reports and feedback on this repository so we can catch bugs!
 
-## Authors
-@kev2nhe - Programmer at FTC Team Lockdown 8564,
-@penamantek - Programmer at FTC Team Lockdown 8564
+## Team Programmers
+@kev2nhe
+@penamantek

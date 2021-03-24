@@ -23,8 +23,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -43,7 +49,9 @@ import hallib.HalDashboard;
 
 @Autonomous(name = "auton", group = "Auto")
 public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
-    private Hardware robot = new Hardware();
+    Hardware robot = new Hardware();
+    private ElapsedTime runtime = new ElapsedTime();
+    public static PIDCoefficients pidCoeffs = new PIDCoefficients(0.30, 0.10, 0.20);
     private static HalDashboard dashboard;
     Alliance alliance;
     StartingPos startpos;
@@ -51,9 +59,11 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
     WobbleGoal wobbleGoal;
     HighGoalAfterWobble highGoalAfterWobble;
     Park park;
-    int delay;
+    private int delay;
     OpenCvCamera webCam;
     DeterminationPipeline pipeline;
+    private int newWobbleArmTargetPos;
+    private double integral = 0;
 
     private enum Alliance {
         RED,
@@ -87,8 +97,10 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
     @Override
     public void runOpMode() {
+
         robot.init(hardwareMap);
 
+        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
         alliance = Alliance.RED;
         startpos = StartingPos.WALL;
         highGoalFromPreload = HighGoalFromPreload.YES;
@@ -98,43 +110,455 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         delay = 0;
 
         dashboard = HalDashboard.createInstance(telemetry);
+        robot.shooterServo.setPosition(1);
+
         doMenus();
 
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        int cameraMonitorViewId = hardwareMap.appContext.getResources()
+                .getIdentifier("cameraMonitorViewId", "id",
+                        hardwareMap.appContext.getPackageName());
+        webCam = OpenCvCameraFactory.getInstance()
+                .createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"),
+                        cameraMonitorViewId);
         pipeline = new DeterminationPipeline();
         webCam.setPipeline(pipeline);
 
-        // We set the viewport policy to optimized view so the preview doesn't appear 90 deg
-        // out when the RC activity is in portrait. We do our actual image processing assuming
-        // landscape orientation, though.
-        webCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
-
-        webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
+        webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
-            public void onOpened()
-            {
-                webCam.startStreaming(1920,1080, OpenCvCameraRotation.UPRIGHT);
+            public void onOpened() {
+                webCam.startStreaming(1920, 1080, OpenCvCameraRotation.UPSIDE_DOWN);
             }
         });
 
+//      if (position == DeterminationPipeline.RingPosition.NONE) {
+//              toA();
+//      } else if (position == DeterminationPipeline.RingPosition.ONE) {
+//              toB();
+//      } else if (position == DeterminationPipeline.RingPosition.FOUR) {
+//              toC();
+//      }
         waitForStart();
 
-        while (opModeIsActive())
-        {
+        if (pipeline.position == DeterminationPipeline.RingPosition.NOT_DETECTED) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
-
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
+        } else {
+                sleep(1000);
+                webCam.stopStreaming();
+        }
+        if(opModeIsActive()) {
+            switch (alliance) {
+                case RED: {
+                    switch (startpos) {
+                        case WALL: {
+                            switch (highGoalFromPreload) {
+                                case YES: {
+                                    turnRightEnc(120, 0.5);
+                                    PidDrive( 7);
+                                    // tests
+//                                    encImuDrive(0.05, -58, 0);
+//                                    turnLeftEnc(120, 0.5);
+//                                    sleep(50);
+//                                    shootRings();
+//                                    sleep(5000);
+//                                    runtime.reset();
+//                                    sleep(50);
+//                                    PidDrive(0.1, 7);
+//                                    runtime.reset();
+//                                    sleep(50);
+//                                    if (pipeline.position == DeterminationPipeline.RingPosition.NONE) {
+//                                        toA();
+//                                    } else if (pipeline.position == DeterminationPipeline.RingPosition.ONE) {
+//                                        toB();
+//                                    } else if (pipeline.position == DeterminationPipeline.RingPosition.FOUR) {
+//                                        toC();
+//                                    }
+                                    switch (wobbleGoal) {
+                                        case YES: {
+                                            switch (pipeline.position) {
+                                                case NONE: {
+                                                    toA();
+                                                    switch (park) {
+                                                        case YES: {
+//                                                        park();
+                                                            break;
+                                                    }
+                                                        case NO: {
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                            case ONE: {
+                                                toB();
+                                                break;
+                                            }
+                                            case FOUR: {
+                                                toC();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    case NO: {
+                                        switch (park) {
+                                            case YES: {
+                                                break;
+                                            }
+                                            case NO: {
+
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                            case NO: {
+                                break;
+                            }
+                        }
+                        switch (highGoalAfterWobble) {
+                            case NO:
+                                break;
+                            case YES:
+                                //......
+                        }
+                    }
+                    case CENTER: {
+                        break;
+                    }
+                }
+                break;
+            }
+            case BLUE: {
+                break;
+            }
+        }
+        }
+
+
+//        robot.setAllDrivePower(1);
+//        sleep(1800);
+//        robot.setAllDrivePower(0);
+//        sleep(500);
+//        robot.wobbleArm.setPower(-1);
+//        sleep(4000);
+//        robot.wobbleArm.setPower(0);
+
+
+// to-do: create functions for parking, grabbing wobble goal, & robot shooter stuff
+//        while (opModeIsActive()) {
+//        }
+    }
+// to-do: make a function that grabs the wobble goal
+    private void toA() {
+        encImuDrive(0.1, -10, 0);
+        // let go of first wobble here
+        PidDrive(9);
+        turnRightEnc(90, 0.3);
+        // grab second wobble
+        turnLeftEnc(90, 0.3);
+        encImuDrive(0.1, -70, 0);
+        // let go of first wobble here
+    }
+
+    private void toB() {
+        turnLeftEnc(280, 0.8);
+        robot.moveArm(-1);
+        sleep(700);
+        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
+        sleep(500);
+        turnRightEnc(45, 0.8);
+        encoderDrive(1, 72, 72, 5);
+        robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
+        encoderDrive(1, -20, -20, 3);
+        turnRightEnc(120, 0.8);
+        encoderDrive(1, 75, 75, 5);
+        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
+        sleep(500);
+        turnRightEnc(150, 0.8);
+        encoderDrive(1, 72, 72, 5);
+        robot.moveArm(1);
+        sleep(700);
+        turnLeftCurvy(100, 1);
+        encoderDrive(1, 20, 20, 4);
+        turnRightCurvy(90, 1);
+    }
+
+    private void toC() {
+        turnLeftEnc(280, 0.8);
+        robot.moveArm(-1);
+        sleep(700);
+        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
+        sleep(500);
+        turnRightEnc(45, 0.8);
+        encoderDrive(1, 96, 96, 5);
+        robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
+        encoderDrive(1, -20, -20, 3);
+        turnRightEnc(120, 0.8);
+        encoderDrive(1, 100, 100, 5);
+        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
+        sleep(500);
+        turnRightEnc(150, 0.8);
+        encoderDrive(1, 96, 96, 5);
+        robot.moveArm(1);
+        sleep(700);
+        turnLeftCurvy(100, 1);
+        encoderDrive(1, 36, 36, 4);
+        turnRightCurvy(90, 1);
+    }
+
+    private void shootRings() {
+            robot.flywheel.setPower(-1);
+            robot.flywheel2.setPower(1);
+            sleep(2000);
+            robot.shooterServo.setPosition(0);
+            sleep(1000);
+            robot.shooterServo.setPosition(1);
+            sleep(1000);
+            robot.shooterServo.setPosition(0);
+            sleep(1000);
+            robot.shooterServo.setPosition(1);
+            sleep(1000);
+            robot.shooterServo.setPosition(0);
+            sleep(800);
+            robot.flywheel.setPower(0);
+            robot.flywheel2.setPower(0);
+    }
+
+    private void park() {
+        encoderDrive(1, 20, 20, 4);
+    }
+
+    public void PidDrive(double distance) {
+        double repCount = 0;
+        if(opModeIsActive()) {
+        double targetPos = (int)(distance*robot.getCountsPerInch()) + (((robot.backRightDrive.getCurrentPosition()
+                + robot.backLeftDrive.getCurrentPosition() + robot.frontRightDrive.getCurrentPosition()
+                + robot.frontLeftDrive.getCurrentPosition()) / 4));
+            double error = ((robot.backRightDrive.getCurrentPosition() + robot.backLeftDrive.getCurrentPosition()
+                    + robot.frontRightDrive.getCurrentPosition() + robot.frontLeftDrive.getCurrentPosition()) / 4);
+            double lastError = 0;
+            while (Math.abs(error) <= 9 && opModeIsActive() && repCount < targetPos) {
+                error = robot.backRightDrive.getCurrentPosition() - targetPos;
+                double changeInError = lastError - error;
+                integral += changeInError * runtime.time();
+                double derivative = changeInError / runtime.time();
+                double P = pidCoeffs.p * error;
+                double I = pidCoeffs.i * integral;
+                double D = pidCoeffs.d * derivative;
+                robot.setAllDrivePower(P + I + D);
+                error = lastError;
+                repCount++;
+                runtime.reset();
+            }
+            robot.stopAllMotorPower();
+            error = ((robot.backRightDrive.getCurrentPosition() + robot.backLeftDrive.getCurrentPosition()
+                    + robot.frontRightDrive.getCurrentPosition() + robot.frontLeftDrive.getCurrentPosition()) / 4);
+            repCount = 0;
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    private void encoderDrive(double speed, double lInches, double rInches, int time){
+        int LEFT_TARGET, RIGHT_TARGET;
+        if(opModeIsActive()){
+            LEFT_TARGET = (int)(lInches*robot.getCountsPerInch()) + robot.frontLeftDrive.getCurrentPosition();
+            RIGHT_TARGET = (int)(rInches*robot.getCountsPerInch()) + robot.frontRightDrive.getCurrentPosition();
+
+            robot.verticalDriveSetTarget(LEFT_TARGET, RIGHT_TARGET);
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            runtime.reset();
+            robot.setAllDrivePower(Math.abs(speed));
+
+            while (opModeIsActive() && (runtime.seconds() < time) && robot.driveIsBusy()) {
+                telemetry.addData("path:", "running to %7d :%7d", LEFT_TARGET, RIGHT_TARGET);
+                telemetry.addData("path:", "running at %7d :%7d",
+                        robot.frontLeftDrive.getCurrentPosition(), robot.frontRightDrive.getCurrentPosition());
+                telemetry.update();
+            }
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        }
+    }
+
+    private void encoderDriveSide(double speed, double lInches, double rInches, int direction, int time){
+        int LEFT_TARGET, RIGHT_TARGET;
+        if(opModeIsActive()){
+            LEFT_TARGET = (int)(lInches*robot.getCountsPerInch()) + robot.frontLeftDrive.getCurrentPosition();
+            RIGHT_TARGET = (int)(rInches*robot.getCountsPerInch()) + robot.frontRightDrive.getCurrentPosition();
+
+            robot.sideDriveSetTarget(direction, LEFT_TARGET, RIGHT_TARGET);
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            runtime.reset();
+            robot.setAllDrivePower(Math.abs(speed));
+
+            while (opModeIsActive() && (runtime.seconds() < time) && robot.driveIsBusy()) {
+                telemetry.addData("path:", "running to %7d :%7d", LEFT_TARGET, RIGHT_TARGET);
+                telemetry.addData("path:", "running at %7d :%7d",
+                        robot.frontLeftDrive.getCurrentPosition(), robot.frontRightDrive.getCurrentPosition());
+                telemetry.update();
+            }
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    private void turnRightEnc(final float TARGET_ANGLE, double power){
+        while(opModeIsActive()){
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            while(currentAngle<=TARGET_ANGLE){
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                robot.driveSetPower(power, -power, power, -power);
+                telemetry.addData("Heading:", currentAngle);
+                telemetry.update();
+            }
+            robot.stopAllMotorPower();
+            break;
+        }
+    }
+
+    private void turnLeftEnc(final float TARGET_ANGLE, double power){
+        while(opModeIsActive()){
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            while(currentAngle>=-TARGET_ANGLE){
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                robot.driveSetPower(-power, power, -power, power);
+            }
+            robot.stopAllMotorPower();
+            break;
+        }
+    }
+
+    private void turnLeftCurvy(final float TARGET_ANGLE, double power){
+        while(opModeIsActive()){
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            while(currentAngle>=-TARGET_ANGLE){
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                robot.driveSetPower(power*4, power, power*4, power);
+            }
+            robot.stopAllMotorPower();
+            break;
+        }
+    }
+
+    private void turnRightCurvy(final float TARGET_ANGLE, double power){
+        while(opModeIsActive()){
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            while(currentAngle>=-TARGET_ANGLE){
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                robot.driveSetPower(power, power*6, power, power*6);
+            }
+            robot.stopAllMotorPower();
+            break;
+        }
+    }
+
+    private void encImuDrive(double speed, double distance, double angle){
+        int LEFT_TARGET, RIGHT_TARGET;
+        double error;
+        double steer;
+        double leftSpeed, rightSpeed;
+        double max;
+
+        if(opModeIsActive()){
+            LEFT_TARGET = (int)(distance*robot.getCountsPerInch()) + robot.frontLeftDrive.getCurrentPosition();
+            RIGHT_TARGET = (int)(distance*robot.getCountsPerInch()) + robot.frontRightDrive.getCurrentPosition();
+
+            robot.verticalDriveSetTarget(LEFT_TARGET,RIGHT_TARGET);
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.setAllDrivePower(Math.abs(speed));
+
+            while(robot.driveIsBusy() && opModeIsActive()){
+                error = robot.getErrorForPID(angle);
+                steer = robot.getSteer(error, robot.P_DRIVE_COEFF);
+
+                if (distance < 0) {
+                    steer *= -1.0;
+                }
+
+                leftSpeed = speed - steer;
+                rightSpeed = speed + steer;
+
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+
+                if(max > 1.0){
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+                robot.driveSetPower(leftSpeed, rightSpeed, leftSpeed, rightSpeed);
+
+            }
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    private void encStrafe(double speed, double distance){
+        int flTarget, frTarget, blTarget, brTarget;
+
+        if(opModeIsActive()){
+            flTarget = (robot.frontLeftDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+            frTarget = (robot.frontRightDrive.getCurrentPosition()) - (int)(distance*robot.getCountsPerInch());
+            blTarget = (robot.backLeftDrive.getCurrentPosition()) - (int)(distance*robot.getCountsPerInch());
+            brTarget = (robot.backRightDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+
+            robot.strafeDriveSetTarget(flTarget, frTarget, blTarget, brTarget);
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.setAllDrivePower(Math.abs(speed));
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    private void encStrafeFlBr(double speed, double distance){
+        int flTarget, brTarget;
+
+        if(opModeIsActive()){
+            flTarget = (robot.frontLeftDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+            brTarget = (robot.backRightDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+
+            robot.frontLeftDrive.setTargetPosition(flTarget);
+            robot.backRightDrive.setTargetPosition(brTarget);
+
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.driveSetPower(Math.abs(speed), 0, 0 ,Math.abs(speed));
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    // to do: sort out enc drive code and fix whatever is going on with these methods lol
+    private void encStrafeFrBl(double speed, double distance){
+        int frTarget, blTarget;
+
+        if(opModeIsActive()){
+            frTarget = (robot.frontLeftDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+            blTarget = (robot.backRightDrive.getCurrentPosition()) + (int)(distance*robot.getCountsPerInch());
+
+            robot.frontRightDrive.setTargetPosition(frTarget);
+            robot.backLeftDrive.setTargetPosition(blTarget);
+
+            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.driveSetPower(0, Math.abs(speed), Math.abs(speed), 0);
+
+
+            robot.stopAllMotorPower();
+            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 
 
-
-// FTC Menu Implementation
+    // FTC Menu Implementation
     @Override
     public boolean isMenuUpButton() { return gamepad1.dpad_up; }
 
@@ -209,7 +633,8 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         {
             FOUR,
             ONE,
-            NONE
+            NONE,
+            NOT_DETECTED
         }
 
         /*
@@ -222,12 +647,12 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
          * The core values which define the location and size of the sample regions
          * NEEDS TO CHANGE
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(200,500);
 
-        static final int REGION_WIDTH = 35;
-        static final int REGION_HEIGHT = 25;
+        static final int REGION_WIDTH = 500;
+        static final int REGION_HEIGHT = 300;
 
-        final int FOUR_RING_THRESHOLD = 150;
+        final int FOUR_RING_THRESHOLD = 160;
         final int ONE_RING_THRESHOLD = 135;
 
         Point region1_pointA = new Point(
@@ -246,7 +671,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         int avg1;
 
         // Volatile since accessed by OpMode thread w/o synchronization
-        public volatile RingPosition position = RingPosition.FOUR;
+        public volatile RingPosition position;
 
         /*
          * This function takes the RGB frame, converts to YCrCb,
@@ -280,7 +705,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
                     BLUE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
-            position = RingPosition.FOUR; // Record our analysis
+            position = RingPosition.NOT_DETECTED;
             if(avg1 > FOUR_RING_THRESHOLD){
                 position = RingPosition.FOUR;
             }else if (avg1 > ONE_RING_THRESHOLD){

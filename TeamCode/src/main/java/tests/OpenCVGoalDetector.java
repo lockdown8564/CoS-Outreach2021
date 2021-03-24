@@ -43,9 +43,9 @@ public class OpenCVGoalDetector extends OpenCvPipeline {
         telemetry.addData("Main raw val", (int) Core.sumElems(fromMain).val[0]);
         telemetry.addData("Main percentage", Math.round(mainValue * 100) + "%");
 
-        boolean stoneMain = mainValue > PERCENT_COLOR_THRESHOLD;
+        boolean present = mainValue > PERCENT_COLOR_THRESHOLD;
 
-        if (stoneMain) {
+        if (present) {
             goalPresence = GoalPresence.PRESENT;
             telemetry.addData("Goal Presence: ", "Present");
         } else {
