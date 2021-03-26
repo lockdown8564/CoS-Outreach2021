@@ -39,13 +39,13 @@ public class teleOp extends LinearOpMode {
         maxSpeed = 0.8;
         robot.init(hardwareMap);
         robot.wobbleServo.setPosition(robot.SERVO_GRAB);
-        robot.shooterServo.setPosition(1);
         robot.wobbleArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         waitForStart();
+        robot.shooterServo.setPosition(1);
         runtime.reset();
 
         while (opModeIsActive()) {
@@ -170,9 +170,9 @@ public class teleOp extends LinearOpMode {
             if (gamepad2.dpad_up){
                 robot.moveArm(1);
             } else if (gamepad2.dpad_down){
-                robot.moveArm(0);
-            } else if (gamepad2.dpad_right) {
                 robot.moveArm(-1);
+            } else if (gamepad2.dpad_right) {
+                robot.moveArm(0);
             }
 
             if (wobbleServoAdjust == 1) {

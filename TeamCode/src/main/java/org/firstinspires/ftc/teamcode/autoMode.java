@@ -156,13 +156,15 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
                         case WALL: {
                             switch (highGoalFromPreload) {
                                 case YES: {
-                                    turnRightEnc(120, 0.5);
-                                    PidDrive( 7);
+                                    PidDrive( -6);
+                                    robot.moveArm(0);
+                                    sleep(1500);
                                     // tests
 //                                    encImuDrive(0.05, -58, 0);
 //                                    turnLeftEnc(120, 0.5);
 //                                    sleep(50);
-//                                    shootRings();
+
+                                    shootRings();
 //                                    sleep(5000);
 //                                    runtime.reset();
 //                                    sleep(50);
@@ -254,14 +256,22 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
     }
 // to-do: make a function that grabs the wobble goal
     private void toA() {
-        encImuDrive(0.1, -10, 0);
-        // let go of first wobble here
-        PidDrive(9);
-        turnRightEnc(90, 0.3);
-        // grab second wobble
-        turnLeftEnc(90, 0.3);
-        encImuDrive(0.1, -70, 0);
-        // let go of first wobble here
+        turnLeftEnc(85, 1);
+        robot.moveArm(-1);
+        sleep(3000);
+        robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
+        sleep(700);
+        robot.moveArm(1);
+        sleep(3000);
+        encoderDrive(1, -10, -10, 2);
+        turnLeftEnc(95, 1);
+        sleep(2000);
+        encoderDrive(1, 20, -20, 2);
+//        turnRightEnc(90, 0.3);
+//        // grab second wobble
+//        turnLeftEnc(90, 0.3);
+//        encImuDrive(0.1, -70, 0);
+//        // let go of first wobble here
     }
 
     private void toB() {
@@ -311,18 +321,18 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
     }
 
     private void shootRings() {
-            robot.flywheel.setPower(-1);
-            robot.flywheel2.setPower(1);
+            robot.flywheel.setPower(1);
+            robot.flywheel2.setPower(-1);
             sleep(2000);
-            robot.shooterServo.setPosition(0);
+            robot.shooterServo.setPosition(0.3);
             sleep(1000);
-            robot.shooterServo.setPosition(1);
+            robot.shooterServo.setPosition(0.85);
             sleep(1000);
-            robot.shooterServo.setPosition(0);
+            robot.shooterServo.setPosition(0.3);
             sleep(1000);
-            robot.shooterServo.setPosition(1);
+            robot.shooterServo.setPosition(0.85);
             sleep(1000);
-            robot.shooterServo.setPosition(0);
+            robot.shooterServo.setPosition(0.3);
             sleep(800);
             robot.flywheel.setPower(0);
             robot.flywheel2.setPower(0);
@@ -341,7 +351,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
             double error = ((robot.backRightDrive.getCurrentPosition() + robot.backLeftDrive.getCurrentPosition()
                     + robot.frontRightDrive.getCurrentPosition() + robot.frontLeftDrive.getCurrentPosition()) / 4);
             double lastError = 0;
-            while (Math.abs(error) <= 9 && opModeIsActive() && repCount < targetPos) {
+            while (Math.abs(error) <= 9 && opModeIsActive() && Math.abs(repCount) < Math.abs(targetPos)) {
                 error = robot.backRightDrive.getCurrentPosition() - targetPos;
                 double changeInError = lastError - error;
                 integral += changeInError * runtime.time();
@@ -411,9 +421,9 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
     private void turnRightEnc(final float TARGET_ANGLE, double power){
         while(opModeIsActive()){
-            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
             while(currentAngle<=TARGET_ANGLE){
-                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
                 robot.driveSetPower(power, -power, power, -power);
                 telemetry.addData("Heading:", currentAngle);
                 telemetry.update();
@@ -425,9 +435,9 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
     private void turnLeftEnc(final float TARGET_ANGLE, double power){
         while(opModeIsActive()){
-            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
             while(currentAngle>=-TARGET_ANGLE){
-                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
                 robot.driveSetPower(-power, power, -power, power);
             }
             robot.stopAllMotorPower();
@@ -437,9 +447,9 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
     private void turnLeftCurvy(final float TARGET_ANGLE, double power){
         while(opModeIsActive()){
-            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
             while(currentAngle>=-TARGET_ANGLE){
-                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
                 robot.driveSetPower(power*4, power, power*4, power);
             }
             robot.stopAllMotorPower();
@@ -449,9 +459,9 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
 
     private void turnRightCurvy(final float TARGET_ANGLE, double power){
         while(opModeIsActive()){
-            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+            float currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
             while(currentAngle>=-TARGET_ANGLE){
-                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YXZ, AngleUnit.DEGREES).firstAngle;
+                currentAngle = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.YZX, AngleUnit.DEGREES).firstAngle;
                 robot.driveSetPower(power, power*6, power, power*6);
             }
             robot.stopAllMotorPower();
