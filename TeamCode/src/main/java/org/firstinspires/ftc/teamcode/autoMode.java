@@ -156,9 +156,8 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
                         case WALL: {
                             switch (highGoalFromPreload) {
                                 case YES: {
-                                    PidDrive( -6);
-                                    robot.moveArm(0);
-                                    sleep(1500);
+                                    PidDrive( -7);
+                                    robot.moveArm(1);
                                     // tests
 //                                    encImuDrive(0.05, -58, 0);
 //                                    turnLeftEnc(120, 0.5);
@@ -266,58 +265,33 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         encoderDrive(1, -10, -10, 2);
         turnLeftEnc(95, 1);
         sleep(2000);
-        encoderDrive(1, 20, -20, 2);
-//        turnRightEnc(90, 0.3);
-//        // grab second wobble
-//        turnLeftEnc(90, 0.3);
-//        encImuDrive(0.1, -70, 0);
-//        // let go of first wobble here
+        encoderDrive(1, 15, 15, 3);
     }
 
     private void toB() {
-        turnLeftEnc(280, 0.8);
+        encoderDrive(1, -20, -20, 2);
+        turnLeftEnc(170, 1);
         robot.moveArm(-1);
-        sleep(700);
-        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
-        sleep(500);
-        turnRightEnc(45, 0.8);
-        encoderDrive(1, 72, 72, 5);
+        sleep(3000);
         robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
-        encoderDrive(1, -20, -20, 3);
-        turnRightEnc(120, 0.8);
-        encoderDrive(1, 75, 75, 5);
-        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
-        sleep(500);
-        turnRightEnc(150, 0.8);
-        encoderDrive(1, 72, 72, 5);
-        robot.moveArm(1);
         sleep(700);
-        turnLeftCurvy(100, 1);
-        encoderDrive(1, 20, 20, 4);
-        turnRightCurvy(90, 1);
+        robot.moveArm(1);
+        sleep(3000);
+        encoderDrive(1, -10, -10, 2);
+
     }
 
     private void toC() {
-        turnLeftEnc(280, 0.8);
+        encoderDrive(1, -30, -30, 4);
+        turnLeftEnc(120, 1);
         robot.moveArm(-1);
-        sleep(700);
-        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
-        sleep(500);
-        turnRightEnc(45, 0.8);
-        encoderDrive(1, 96, 96, 5);
+        sleep(3000);
         robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
-        encoderDrive(1, -20, -20, 3);
-        turnRightEnc(120, 0.8);
-        encoderDrive(1, 100, 100, 5);
-        robot.wobbleServo.setPosition(robot.SERVO_GRAB);
-        sleep(500);
-        turnRightEnc(150, 0.8);
-        encoderDrive(1, 96, 96, 5);
-        robot.moveArm(1);
         sleep(700);
-        turnLeftCurvy(100, 1);
-        encoderDrive(1, 36, 36, 4);
-        turnRightCurvy(90, 1);
+        robot.moveArm(1);
+        sleep(3000);
+        turnLeftEnc(60, 1);
+        encoderDrive(1, -30, -30, 0);
     }
 
     private void shootRings() {
@@ -325,13 +299,13 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
             robot.flywheel2.setPower(-1);
             sleep(2000);
             robot.shooterServo.setPosition(0.3);
-            sleep(1000);
+            sleep(800);
             robot.shooterServo.setPosition(0.85);
-            sleep(1000);
+            sleep(800);
             robot.shooterServo.setPosition(0.3);
-            sleep(1000);
+            sleep(800);
             robot.shooterServo.setPosition(0.85);
-            sleep(1000);
+            sleep(800);
             robot.shooterServo.setPosition(0.3);
             sleep(800);
             robot.flywheel.setPower(0);
@@ -396,28 +370,28 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         }
     }
 
-    private void encoderDriveSide(double speed, double lInches, double rInches, int direction, int time){
-        int LEFT_TARGET, RIGHT_TARGET;
-        if(opModeIsActive()){
-            LEFT_TARGET = (int)(lInches*robot.getCountsPerInch()) + robot.frontLeftDrive.getCurrentPosition();
-            RIGHT_TARGET = (int)(rInches*robot.getCountsPerInch()) + robot.frontRightDrive.getCurrentPosition();
-
-            robot.sideDriveSetTarget(direction, LEFT_TARGET, RIGHT_TARGET);
-            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
-            runtime.reset();
-            robot.setAllDrivePower(Math.abs(speed));
-
-            while (opModeIsActive() && (runtime.seconds() < time) && robot.driveIsBusy()) {
-                telemetry.addData("path:", "running to %7d :%7d", LEFT_TARGET, RIGHT_TARGET);
-                telemetry.addData("path:", "running at %7d :%7d",
-                        robot.frontLeftDrive.getCurrentPosition(), robot.frontRightDrive.getCurrentPosition());
-                telemetry.update();
-            }
-
-            robot.stopAllMotorPower();
-            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
+//    private void encoderDriveSide(double speed, double lInches, double rInches, int direction, int time){
+//        int LEFT_TARGET, RIGHT_TARGET;
+//        if(opModeIsActive()){
+//            LEFT_TARGET = (int)(lInches*robot.getCountsPerInch()) + robot.frontLeftDrive.getCurrentPosition();
+//            RIGHT_TARGET = (int)(rInches*robot.getCountsPerInch()) + robot.frontRightDrive.getCurrentPosition();
+//
+//            robot.sideDriveSetTarget(direction, LEFT_TARGET, RIGHT_TARGET);
+//            robot.setDriveMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            runtime.reset();
+//            robot.setAllDrivePower(Math.abs(speed));
+//
+//            while (opModeIsActive() && (runtime.seconds() < time) && robot.driveIsBusy()) {
+//                telemetry.addData("path:", "running to %7d :%7d", LEFT_TARGET, RIGHT_TARGET);
+//                telemetry.addData("path:", "running at %7d :%7d",
+//                        robot.frontLeftDrive.getCurrentPosition(), robot.frontRightDrive.getCurrentPosition());
+//                telemetry.update();
+//            }
+//
+//            robot.stopAllMotorPower();
+//            robot.setDriveMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        }
+//    }
 
     private void turnRightEnc(final float TARGET_ANGLE, double power){
         while(opModeIsActive()){
@@ -654,13 +628,13 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
          * The core values which define the location and size of the sample regions
          * NEEDS TO CHANGE
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(200,500);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(150,500);
 
-        static final int REGION_WIDTH = 500;
-        static final int REGION_HEIGHT = 300;
+        static final int REGION_WIDTH = 400;
+        static final int REGION_HEIGHT = 250;
 
-        final int FOUR_RING_THRESHOLD = 160;
-        final int ONE_RING_THRESHOLD = 135;
+        final int FOUR_RING_THRESHOLD = 140;
+        final int ONE_RING_THRESHOLD = 131;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,

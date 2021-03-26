@@ -96,13 +96,13 @@ public class OpenCVTest extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(200,500);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(150,500);
 
-        static final int REGION_WIDTH = 500;
-        static final int REGION_HEIGHT = 300;
+        static final int REGION_WIDTH = 400;
+        static final int REGION_HEIGHT = 250;
 
-        final int FOUR_RING_THRESHOLD = 160;
-        final int ONE_RING_THRESHOLD = 135;
+        final int FOUR_RING_THRESHOLD = 140;
+        final int ONE_RING_THRESHOLD = 131;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
