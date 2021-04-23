@@ -156,14 +156,15 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
                         case WALL: {
                             switch (highGoalFromPreload) {
                                 case YES: {
-                                    PidDrive( -7);
-                                    robot.moveArm(1);
+                                    PidDrive( -6.4);
+//                                    robot.moveArm(1);
+
                                     // tests
 //                                    encImuDrive(0.05, -58, 0);
 //                                    turnLeftEnc(120, 0.5);
 //                                    sleep(50);
-
                                     shootRings();
+                                    encoderDrive(1, -7, -7, 3);
 //                                    sleep(5000);
 //                                    runtime.reset();
 //                                    sleep(50);
@@ -265,7 +266,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
         encoderDrive(1, -10, -10, 2);
         turnLeftEnc(95, 1);
         sleep(2000);
-        encoderDrive(1, 15, 15, 3);
+        encoderDrive(1, -30, 30, 3);
     }
 
     private void toB() {
@@ -295,19 +296,27 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
     }
 
     private void shootRings() {
-            robot.flywheel.setPower(1);
-            robot.flywheel2.setPower(-1);
+            robot.flywheel.setPower(0.81);
+            robot.flywheel2.setPower(-0.81);
             sleep(2000);
             robot.shooterServo.setPosition(0.3);
-            sleep(800);
+            sleep(1000);
             robot.shooterServo.setPosition(0.85);
-            sleep(800);
+            sleep(1000);
             robot.shooterServo.setPosition(0.3);
-            sleep(800);
+            sleep(1000);
             robot.shooterServo.setPosition(0.85);
-            sleep(800);
+            sleep(1000);
             robot.shooterServo.setPosition(0.3);
-            sleep(800);
+            sleep(1000);
+            robot.shooterServo.setPosition(0.85);
+            sleep(1000);
+            robot.shooterServo.setPosition(0.3);
+            sleep(1000);
+            robot.shooterServo.setPosition(0.85);
+            sleep(1000);
+            robot.shooterServo.setPosition(0.3);
+            sleep(1000);
             robot.flywheel.setPower(0);
             robot.flywheel2.setPower(0);
     }
@@ -628,7 +637,7 @@ public class autoMode extends LinearOpMode implements FtcMenu.MenuButtons {
          * The core values which define the location and size of the sample regions
          * NEEDS TO CHANGE
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(150,500);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(575,500);
 
         static final int REGION_WIDTH = 400;
         static final int REGION_HEIGHT = 250;

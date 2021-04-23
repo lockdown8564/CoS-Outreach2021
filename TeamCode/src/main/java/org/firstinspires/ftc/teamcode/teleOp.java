@@ -138,12 +138,12 @@ public class teleOp extends LinearOpMode {
                 flywheel2Adjust = flywheel2Adjust - 0.01;
             }
 
-            if (flywheel1Adjust > 1) {
-                flywheel1Adjust = 1;
-                flywheel2Adjust = -1;
+            if (flywheel1Adjust > 0.85) {
+                flywheel1Adjust = 0.85;
+                flywheel2Adjust = -0.85;
             } else if (flywheel1Adjust < 0) {
-                flywheel1Adjust = 1;
-                flywheel2Adjust = -1;
+                flywheel1Adjust = 0;
+                flywheel2Adjust = 0;
             }
 
 //            wobble arm power with gamepad 2 right sticks (not ideal when driving because the
