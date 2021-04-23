@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CoS2021.iml" filepath="$PROJECT_DIR$/.idea/modules/CoS2021.iml" group="CoS2021" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/CoS2021-FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/CoS2021-FtcRobotController.iml" group="CoS2021/FtcRobotController" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/CoS2021-TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/CoS2021-TeamCode.iml" group="CoS2021/TeamCode" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController.iml" group="ftc_app/FtcRobotController" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController-FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/FtcRobotController-FtcRobotController.iml" group="FtcRobotController/FtcRobotController" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/FtcRobotController-TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/FtcRobotController-TeamCode.iml" group="FtcRobotController/TeamCode" />

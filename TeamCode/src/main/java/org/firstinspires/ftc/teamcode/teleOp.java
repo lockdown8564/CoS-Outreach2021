@@ -18,6 +18,7 @@ public class teleOp extends LinearOpMode {
     private int newWobbleArmTargetPos;
     private double flywheel1Adjust = 1;
     private double flywheel2Adjust = -1;
+    private double intakeToggle;
 
 
     private enum DriveSpeed {
@@ -104,25 +105,25 @@ public class teleOp extends LinearOpMode {
             }
 
 //          sets power of intake
-            if(gamepad2.right_bumper) {
+            if(gamepad1.right_bumper) {
                 robot.intake.setPower(1);
-            } else if(gamepad2.left_bumper) {
+            } else if(gamepad1.left_bumper) {
                 robot.intake.setPower(-1);
             } else {
                 robot.intake.setPower(0);
             }
 
 //          sets power of flywheel motors & servo for shooter (robot ring shooter)
-            if(gamepad2.a) {
+            if(gamepad1.a) {
                 robot.shooterServo.setPosition(0.3);
             } else {
                 robot.shooterServo.setPosition(0.85);
             }
 
-            if(gamepad2.b) {
+            if(gamepad1.b) {
                 robot.flywheel.setPower(flywheel1Adjust);
                 robot.flywheel2.setPower(flywheel2Adjust);
-            } else if (gamepad2.right_trigger != 0) {
+            } else if (gamepad1.dpad_left) {
                 robot.flywheel.setPower(0.74);
                 robot.flywheel2.setPower(-0.74);
             } else {
@@ -130,13 +131,13 @@ public class teleOp extends LinearOpMode {
                 robot.flywheel2.setPower(0);
             }
 
-            if(gamepad1.dpad_down) {
-                flywheel1Adjust = flywheel1Adjust - 0.01;
-                flywheel2Adjust = flywheel2Adjust + 0.01;
-            } else if(gamepad1.dpad_up) {
-                flywheel1Adjust = flywheel1Adjust + 0.01;
-                flywheel2Adjust = flywheel2Adjust - 0.01;
-            }
+//            if(gamepad1.dpad_down) {
+//                flywheel1Adjust = flywheel1Adjust - 0.01;
+//                flywheel2Adjust = flywheel2Adjust + 0.01;
+//            } else if(gamepad1.dpad_up) {
+//                flywheel1Adjust = flywheel1Adjust + 0.01;
+//                flywheel2Adjust = flywheel2Adjust - 0.01;
+//            }
 
             if (flywheel1Adjust > 0.85) {
                 flywheel1Adjust = 0.85;
@@ -160,18 +161,18 @@ public class teleOp extends LinearOpMode {
 //                robot.wobbleServo.setPosition(0.5);
 //            }
 
-            if(gamepad1.left_bumper) {
-                robot.testServo.setPosition(robot.SERVO_GRAB);
-            } else {
-                robot.testServo.setPosition(robot.SERVO_RELEASE);
-            }
+//            if(gamepad1.left_bumper) {
+//                robot.testServo.setPosition(robot.SERVO_GRAB);
+//            } else {
+//                robot.testServo.setPosition(robot.SERVO_RELEASE);
+//            }
 
 //          commands to power the arm for the wobble goal manipulator
-            if (gamepad2.dpad_up){
+            if (gamepad1.dpad_up){
                 robot.moveArm(1);
-            } else if (gamepad2.dpad_down){
+            } else if (gamepad1.dpad_down){
                 robot.moveArm(-1);
-            } else if (gamepad2.dpad_right) {
+            } else if (gamepad1.dpad_right) {
                 robot.moveArm(0);
             }
 
@@ -181,9 +182,9 @@ public class teleOp extends LinearOpMode {
                 robot.wobbleServo.setPosition(robot.SERVO_RELEASE);
             }
 
-            if (gamepad2.x) {
+            if (gamepad1.left_stick_button) {
                 wobbleServoAdjust = 1;
-            } else if (gamepad2.y) {
+            } else if (gamepad2.right_stick_button) {
                 wobbleServoAdjust = 0;
             }
 
